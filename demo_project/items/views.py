@@ -26,6 +26,9 @@ class ItemRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
 
 # Example third-party integration endpoint: fetch and save posts from JSONPlaceholder
 class ImportExternalPostsView(APIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (AllowAny,)
+    
     def get(self, request):
         url = "https://jsonplaceholder.typicode.com/posts"
         resp = requests.get(url, timeout=10)
