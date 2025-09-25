@@ -10,21 +10,22 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
+import environ
 
 from pathlib import Path
-from urllib.parse import urlparse
-from dotenv import load_dotenv
-load_dotenv()
+env = environ.Env(DEBUG=(bool, False))
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^uio98585mmcgz3b4=z@!53ok4&dwn9wrdn=pqqw113e0wwhp0'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -77,13 +78,22 @@ WSGI_APPLICATION = 'demo_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+DATABASES = {   
+    'default': {        
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',     
+        'NAME': env('DB_NAME'), 
+        'USER': env('DB_USER'), 
+        'PASSWORD': env('DB_PASSWORD'), 
+        'HOST': env('DB_HOST'), 
     }
 }
-
 AUTH_PASSWORD_VALIDATORS = []
 
 # Password validation
@@ -105,6 +115,22 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.DjangoModelPermissions',
+
+    ],
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter',
+    ]
+    
+}
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
@@ -126,3 +152,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CSRF_TRUSTED_ORIGINS = ['http://103.86.182.150:8001']
+CORS_ORIGIN_ALLOW_ALL=True
