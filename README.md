@@ -2,6 +2,7 @@
 
 # Django Demo: CRUD + 3rd-party integration + Visualization
 
+
 ## Summary
 Small Django application that demonstrates:
 - REST CRUD for `Item` model using Django REST Framework (DRF).
@@ -67,3 +68,23 @@ App will run at locally:
 👉 http://127.0.0.1:8000/
 
 
+
+## API Documentation (Swagger & ReDoc)
+
+# This project includes interactive API documentation powered by Swagger (drf-yasg).
+
+# Available Endpoints
+
+Swagger UI → http://54.163.216.101:8000/swagger/
+
+(Interactive interface to test APIs)
+
+ReDoc UI → http://54.163.216.101:8000/redoc/
+
+(Clean, structured documentation view)
+
+Raw OpenAPI Schema
+
+JSON: http://54.163.216.101:8000/swagger.json
+
+YAML: http://54.163.216.101:8000/swagger.yaml
