@@ -25,18 +25,20 @@ Small Django application that demonstrates:
    git clone https://github.com/dumoresagar/SocialBoosterMedia-django-task.git
 
 2. Create  Virtualenv
-  1.python -m venv venv
-  2. On Linux
-    source venv/bin/activate
-    On Windows
-    venv\Scripts\activate 
+  python -m venv venv
+
+3. Activate Virtualenv file
+
+  -`source venv/bin/activate` - On Linux
+  - `venv\Scripts\activate ` - On Windows
+ 
 
 3. cd demo_project
 
 4.Run
-  python manage.py makemigrations
-  python manage.py migrate
-  python manage.py runserver
+  -python manage.py makemigrations
+  -python manage.py migrate
+  -python manage.py runserver
 
 App will run at:
 👉 http://127.0.0.1:8000/
