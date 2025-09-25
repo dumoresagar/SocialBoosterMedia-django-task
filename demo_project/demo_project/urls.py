@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from items import views
 from django.views.generic import RedirectView
 
@@ -25,5 +27,9 @@ urlpatterns = [
     path("api/import-posts/", views.ImportExternalPostsView.as_view(), name="import-posts"),
     path("dashboard/", views.dashboard, name="dashboard"),
     path("", RedirectView.as_view(url="/dashboard/")),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
 
