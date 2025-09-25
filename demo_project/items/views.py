@@ -7,14 +7,20 @@ from .serializers import ItemSerializer, ExternalPostSerializer
 import requests
 from django.db.models import Count
 from rest_framework.decorators import api_view
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated,AllowAny
 
 
 # CRUD APIs for Item
 class ItemListCreateAPIView(generics.ListCreateAPIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (AllowAny,)
     queryset = Item.objects.all().order_by("-created_at")
     serializer_class = ItemSerializer
 
 class ItemRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (AllowAny,)
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
 

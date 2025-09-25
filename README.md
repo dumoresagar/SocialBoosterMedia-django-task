@@ -9,7 +9,30 @@ Small Django application that demonstrates:
 - A simple dashboard that visualizes DB data using Chart.js.
 - for local development with Postgres.
 
+
+Live Link : 
+
+Admin Panel link : http://54.163.216.101:8000/admin/
+
+👉Username : admin
+👉Password : admin@123
+
 ## Features
+- Endpoints:
+  - `GET http://54.163.216.101:8000/api/items/` - list items
+  - `POST http://54.163.216.101:8000/api/items/` - create item
+  - `GET http://54.163.216.101:8000/api/items/<id>/` - retrieve
+  - `PUT http://54.163.216.101:8000/api/items/<id>/` - update
+  - `DELETE http://54.163.216.101:8000/api/items/<id>/` - delete
+  - `GET http://54.163.216.101:8000/api/import-posts/` - fetch posts from JSONPlaceholder and save to DB
+  - `GET http://54.163.216.101:8000/dashboard/` - Chart.js dashboard
+
+## ThirtParty API and 
+
+  - `GET http://54.163.216.101:8000/api/import-posts/` - fetch posts from JSONPlaceholder and save to DB
+
+
+## local Features
 - Endpoints:
   - `GET /api/items/` - list items
   - `POST /api/items/` - create item
@@ -19,7 +42,7 @@ Small Django application that demonstrates:
   - `GET /api/import-posts/` - fetch posts from JSONPlaceholder and save to DB
   - `GET /dashboard/` - Chart.js dashboard
 
-## Quickstart (local with Docker)
+## Quickstart (local)
 1. Clone:
    ```bash
    git clone https://github.com/dumoresagar/SocialBoosterMedia-django-task.git
@@ -40,8 +63,7 @@ Small Django application that demonstrates:
   -python manage.py migrate
   -python manage.py runserver
 
-App will run at:
+App will run at locally:
 👉 http://127.0.0.1:8000/
 
 
-Live Link : 
